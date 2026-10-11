@@ -20,7 +20,7 @@ services:
   auth_service:
     image: ndprasad23/python23:auth
     ports:
-      - "6001:6001"
+      - "5001:5001"
     networks:
       - myapp
     deploy:
@@ -34,7 +34,7 @@ services:
   book_service:
     image: ndprasad23/python23:book
     ports:
-      - "6002:6002"
+      - "5002:5002"
     networks:
       - myapp
     deploy:
@@ -48,7 +48,7 @@ services:
   borrow_service:
     image: ndprasad23/python23:borrow
     ports:
-      - "6003:6003"
+      - "5003:5003"
     networks:
       - myapp
     deploy:
@@ -62,7 +62,7 @@ services:
   frontend:
     image: ndprasad23/python23:frontend
     ports:
-      - "6000:6000"
+      - "5000:5000"
     networks:
       - myapp
     deploy:
