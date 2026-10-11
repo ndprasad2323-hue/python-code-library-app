@@ -1,7 +1,6 @@
 ---
 services:
   db:
-    container-name:db
     image: ndprasad23/python23:db
     deploy:
       replicas: 1
@@ -11,7 +10,6 @@ services:
       - mynetwork
 
   auth_service:
-    container-name: auth
     image: ndprasad23/python23:auth
     deploy:
       replicas: 1
@@ -24,7 +22,6 @@ services:
     
 
   book_service:
-    container-name: book
     image: ndprasad23/python23:book
     deploy:
       replicas: 1
@@ -35,7 +32,6 @@ services:
     depends_on:
       - db
   borrow_service:
-    container-name:borrow
     image: ndprasad23/python23:borrow
     deploy:
       replicas: 1
@@ -47,7 +43,6 @@ services:
       - db
 
   frontend:
-    container-name: frontend
     image: ndprasad23/python23:frontend
     deploy:
       replicas: 1
