@@ -9,14 +9,6 @@ services:
       - mydata:/var/lib/mysql/
     networks:
       - myapp
-    deploy:
-      resources:
-        reservations:
-          cpus: "0.25"
-          memory: 100M
-        limits:
-          cpus: "0.5"
-          memory: 200M
 
   auth_service:
     container_name: auth_service
@@ -25,14 +17,6 @@ services:
       - "5001:5001"
     networks:
       - myapp
-    deploy:
-      resources:
-        reservations:
-          cpus: "0.25"
-          memory: 100M
-        limits:
-          cpus: "0.5"
-          memory: 200M
   book_service:
     container_name: book_service
     image: ndprasad23/python23:book
@@ -40,14 +24,6 @@ services:
       - "5002:5002"
     networks:
       - myapp
-    deploy:
-      resources:
-        reservations:
-          cpus: "0.25"
-          memory: 100M
-        limits:
-          cpus: "0.5"
-          memory: 200M
   borrow_service:
     container_name: borrow_service
     image: ndprasad23/python23:borrow
@@ -55,14 +31,6 @@ services:
       - "5003:5003"
     networks:
       - myapp
-    deploy:
-      resources:
-        reservations:
-          cpus: "0.25"
-          memory: 100M
-        limits:
-          cpus: "0.5"
-          memory: 200M
   frontend:
     container_name: frontend
     image: ndprasad23/python23:frontend
@@ -70,14 +38,6 @@ services:
       - "5000:5000"
     networks:
       - myapp
-    deploy:
-      resources:
-        reservations:
-          cpus: "0.25"
-          memory: 100M
-        limits:
-          cpus: "0.5"
-          memory: 200M
 networks:
   myapp:
     driver: overlay
