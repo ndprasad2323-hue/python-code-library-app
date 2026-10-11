@@ -1,47 +1,85 @@
 ---
 services:
   db:
+    container_name: db
     image: ndprasad23/python23:db
     ports:
       - "3306:3306"
+    volumes:
+      - mydata:/var/lib/mysql/
     networks:
-      - mynetwork
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
 
   auth_service:
+    container_name: auth_service
     image: ndprasad23/python23:auth
     ports:
       - "5001:5001"
     networks:
-      - mynetwork
-    depends_on:
-      - db
-    
-
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
   book_service:
+    container_name: book_service
     image: ndprasad23/python23:book
     ports:
       - "5002:5002"
     networks:
-      - mynetwork
-    depends_on:
-      - db
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
   borrow_service:
+    container_name: borrow_service
     image: ndprasad23/python23:borrow
     ports:
       - "5003:5003"
     networks:
-      - mynetwork
-    depends_on:
-      - db
-
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
   frontend:
+    container_name: frontend
     image: ndprasad23/python23:frontend
     ports:
       - "5000:5000"
     networks:
-      - mynetwork
-    
-
+      - myapp
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 100M
+        limits:
+          cpus: "0.5"
+          memory: 200M
 networks:
-  mynetwork:
+  myapp:
     driver: overlay
+volumes:
+  mydata:
