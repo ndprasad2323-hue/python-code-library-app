@@ -13,8 +13,8 @@ services:
     image: ndprasad23/python23:auth
     ports:
       - "5001:5001"
-   networks:
-      - mynetwork
+    networks:
+       - mynetwork
 
   book_service:
     container_name: book_service
