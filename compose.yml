@@ -2,7 +2,7 @@
 services:
   db:
     image: ndprasad23/python23:db
-    container_name: db_container
+    container_name: db
     ports:
       - "3306:3306"
     volumes:
