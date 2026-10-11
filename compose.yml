@@ -2,7 +2,7 @@
 services:
   db:
     container_name: db
-    build: ndprasad23/python23:db
+    image: ndprasad23/python23:db
     ports:
       - "3306:3306"
     volumes:
@@ -20,7 +20,7 @@ services:
 
   auth_service:
     container_name: auth_service
-    build: ndprasad23/python23:auth
+    image: ndprasad23/python23:auth
     ports:
       - "5001:5001"
     networks:
@@ -35,7 +35,7 @@ services:
           memory: 200M
   book_service:
     container_name: book_service
-    build: ndprasad23/python23:book
+    image: ndprasad23/python23:book
     ports:
       - "5002:5002"
     networks:
@@ -50,7 +50,7 @@ services:
           memory: 200M
   borrow_service:
     container_name: borrow_service
-    build: ndprasad23/python23:borrow
+    image: ndprasad23/python23:borrow
     ports:
       - "5003:5003"
     networks:
@@ -65,7 +65,7 @@ services:
           memory: 200M
   frontend:
     container_name: frontend
-    build: ndprasad23/python23:frontend
+    image: ndprasad23/python23:frontend
     ports:
       - "5000:5000"
     networks:
