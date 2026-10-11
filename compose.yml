@@ -1,7 +1,7 @@
----
+version: "3.8"
+
 services:
   db:
-    container_name: db
     image: ndprasad23/python23:db
     ports:
       - "3306:3306"
@@ -9,37 +9,46 @@ services:
       - mydata:/var/lib/mysql/
     networks:
       - myapp
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: digital_library
 
   auth_service:
-    container_name: auth_service
     image: ndprasad23/python23:auth
     ports:
       - "5001:5001"
     networks:
       - myapp
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: digital_library
+
   book_service:
-    container_name: book_service
     image: ndprasad23/python23:book
     ports:
       - "5002:5002"
     networks:
       - myapp
+
   borrow_service:
-    container_name: borrow_service
     image: ndprasad23/python23:borrow
     ports:
       - "5003:5003"
     networks:
       - myapp
+
   frontend:
-    container_name: frontend
     image: ndprasad23/python23:frontend
     ports:
       - "5000:5000"
     networks:
       - myapp
+
 networks:
   myapp:
     driver: overlay
+
 volumes:
   mydata:
