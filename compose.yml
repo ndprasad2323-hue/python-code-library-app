@@ -1,4 +1,3 @@
----
 services:
   db:
     image: ndprasad23/python23:db
@@ -7,34 +6,49 @@ services:
     volumes:
       - mydata:/var/lib/mysql/
     networks:
-      - myapp
+      myapp:
+        aliases:
+          - db
 
   auth_service:
     image: ndprasad23/python23:auth
     ports:
       - "5001:5001"
     networks:
-      - myapp
+      myapp:
+        aliases:
+          - auth_service
+
   book_service:
     image: ndprasad23/python23:book
     ports:
       - "5002:5002"
     networks:
-      - myapp
+      myapp:
+        aliases:
+          - book_service
+
   borrow_service:
     image: ndprasad23/python23:borrow
     ports:
       - "5003:5003"
     networks:
-      - myapp
+      myapp:
+        aliases:
+          - borrow_service
+
   frontend:
     image: ndprasad23/python23:frontend
     ports:
       - "5000:5000"
     networks:
-      - myapp
+      myapp:
+        aliases:
+          - frontend
+
 networks:
   myapp:
     driver: overlay
+
 volumes:
   mydata:
