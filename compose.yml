@@ -32,7 +32,7 @@ services:
     depends_on:
       - db
   borrow_service:
-    image: ndprasad23/python23:barrow
+    image: ndprasad23/python23:borrow
     deploy:
       replicas: 1
     ports:
