@@ -20,7 +20,7 @@ services:
     networks:
       - myapp
     environment:
-      DB_HOST: db
+      DB_HOST: bookapp_db
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: digital_library
