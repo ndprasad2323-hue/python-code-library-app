@@ -16,23 +16,22 @@ services:
      - mynetwork
   book_services:
     image: ndprasad23/python23:book
-     ports:
-     - "5002:5002"
-     networks:
-     - mynetwork
+    ports:
+    - "5002:5002"
+    networks:
+    - mynetwork
   barrow_services:
-     image: ndprasad23/python23:barrow
-     ports:
-     - "5003:5003"
-     networks:
-     - mynetwork
+    image: ndprasad23/python23:barrow
+    ports:
+    - "5003:5003"
+    networks:
+    - mynetwork
   forntend:
-     image: ndprasad23/python23:frontend
-     ports:
-     - "5000:5000"
-     networks:
-     - mynetwork
-
+    image: ndprasad23/python23:frontend
+    ports:
+    - "5000:5000"
+    networks:
+    - mynetwork
 networks:
   mynetwork:
     driver: overlay
