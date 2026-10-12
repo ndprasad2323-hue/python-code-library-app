@@ -1,53 +1,40 @@
-version: "3.8"
-
+---
 services:
   db:
-    image: ndprasad23/python23:db
-    ports:
-      - "3306:3306"
-    volumes:
-      - mydata:/var/lib/mysql/
-    networks:
-      - myapp
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: digital_library
-
-  auth_service:
-    image: ndprasad23/python23:auth
-    ports:
-      - "5001:5001"
-    networks:
-      - myapp
-    environment:
-      DB_HOST: bookapp_db
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_NAME: digital_library
-
-  book_service:
+     image: ndprasad23/python23:db
+     ports:
+     - "3306:3306"
+     volums:
+     - mydata:/var/lib/mysql/
+     networks:
+     - mynetwork
+  auth_services:
+     image: ndprasad23/python23:auth
+     ports:
+     - "5001:5001"
+     networks:
+     - mynetwork
+  book_services:
     image: ndprasad23/python23:book
-    ports:
-      - "5002:5002"
-    networks:
-      - myapp
-
-  borrow_service:
-    image: ndprasad23/python23:borrow
-    ports:
-      - "5003:5003"
-    networks:
-      - myapp
-
-  frontend:
-    image: ndprasad23/python23:frontend
-    ports:
-      - "5000:5000"
-    networks:
-      - myapp
+     ports:
+     - "5002:5002"
+     networks:
+     - mynetwork
+  barrow_services:
+     image: ndprasad23/python23:barrow
+     ports:
+     - "5003:5003"
+     networks:
+     - mynetwork
+  forntend:
+     image: ndprasad23/python23:frontend
+     ports:
+     - "5000:5000"
+     networks:
+     - mynetwork
 
 networks:
-  myapp:
+  mynetwork:
     driver: overlay
 
 volumes:
