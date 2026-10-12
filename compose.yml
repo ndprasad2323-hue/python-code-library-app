@@ -1,5 +1,4 @@
-version: "3.8"
-
+---
 services:
   db:
     image: ndprasad23/python23:db
@@ -7,15 +6,8 @@ services:
       replicas: 1
     ports:
       - "3306:3306"
-    volumes:
-      - mydata:/var/lib/mysql
     networks:
       - mynetwork
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   auth_service:
     image: ndprasad23/python23:auth
@@ -25,6 +17,9 @@ services:
       - "5001:5001"
     networks:
       - mynetwork
+    depends_on:
+      - db
+    
 
   book_service:
     image: ndprasad23/python23:book
@@ -34,7 +29,8 @@ services:
       - "5002:5002"
     networks:
       - mynetwork
-
+    depends_on:
+      - db
   borrow_service:
     image: ndprasad23/python23:borrow
     deploy:
@@ -43,6 +39,8 @@ services:
       - "5003:5003"
     networks:
       - mynetwork
+    depends_on:
+      - db
 
   frontend:
     image: ndprasad23/python23:frontend
@@ -52,10 +50,11 @@ services:
       - "5000:5000"
     networks:
       - mynetwork
+    depends_on:
+      - auth_service
+      - book_service
+      - borrow_service
 
 networks:
   mynetwork:
     driver: overlay
-
-volumes:
-  mydata:
